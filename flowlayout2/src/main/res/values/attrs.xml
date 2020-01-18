@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlowLayout2">
+        <attr name="fl2_column_space" format="dimension"/>
+        <attr name="fl2_row_space" format="dimension"/>
+    </declare-styleable>
+</resources>
