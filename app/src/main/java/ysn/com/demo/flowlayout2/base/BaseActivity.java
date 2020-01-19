@@ -2,12 +2,12 @@ package ysn.com.demo.flowlayout2.base;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ysn.com.demo.flowlayout2.R;
 import ysn.com.demo.flowlayout2.bean.User;
+import ysn.com.demo.flowlayout2.utils.ToastUtils;
 
 /**
  * @Author yangsanning
@@ -19,7 +19,7 @@ import ysn.com.demo.flowlayout2.bean.User;
 public abstract class BaseActivity extends AppCompatActivity {
 
     public void showMsg(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        ToastUtils.showNormalToast(this, msg);
     }
 
     public void startActivity(Class cls) {
