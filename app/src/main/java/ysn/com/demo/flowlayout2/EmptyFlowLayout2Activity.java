@@ -12,7 +12,7 @@ import ysn.com.view.flowlayout2.base.BaseFlowLayout2ViewHolder;
 /**
  * @Author yangsanning
  * @ClassName EmptyFlowLayout2Activity
- * @Description 一句话概括作用
+ * @Description FlowLayout2为空时演示
  * @Date 2020/1/19
  * @History 2020/1/19 author: description:
  */

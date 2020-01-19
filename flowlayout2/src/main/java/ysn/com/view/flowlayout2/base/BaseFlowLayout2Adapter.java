@@ -1,6 +1,7 @@
 package ysn.com.view.flowlayout2.base;
 
 import android.support.annotation.IntRange;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,8 +22,9 @@ import ysn.com.view.flowlayout2.FlowLayout2;
  */
 public abstract class BaseFlowLayout2Adapter<T, K extends BaseFlowLayout2ViewHolder> {
 
-    private int layoutRes;
+    private int defLayoutRes;
     private List<T> datas;
+    private BaseFlowLayout2Type<T> flowLayout2Type;
 
     private int emptyLayoutRes = -1;
     private View emptyView;
@@ -32,8 +34,11 @@ public abstract class BaseFlowLayout2Adapter<T, K extends BaseFlowLayout2ViewHol
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
 
-    protected BaseFlowLayout2Adapter(int layoutRes) {
-        this.layoutRes = layoutRes;
+    protected BaseFlowLayout2Adapter() {
+    }
+
+    protected BaseFlowLayout2Adapter(int defLayoutRes) {
+        this.defLayoutRes = defLayoutRes;
     }
 
     /**
@@ -50,10 +55,19 @@ public abstract class BaseFlowLayout2Adapter<T, K extends BaseFlowLayout2ViewHol
      * 创建itemView
      */
     private View createBaseViewHolder(int position) {
-        View itemView = LayoutInflater.from(flowLayout2.getContext()).inflate(layoutRes, flowLayout2, false);
+        View itemView = LayoutInflater.from(flowLayout2.getContext())
+            .inflate(getLayoutRes(position), flowLayout2, false);
         setItemViewClickListener(itemView, position);
         convert(new BaseFlowLayout2ViewHolder(itemView), position, datas.get(position));
         return itemView;
+    }
+
+    private int getLayoutRes(int position) {
+        if (flowLayout2Type == null) {
+            return defLayoutRes;
+        }
+        int itemType = getItemType(position);
+        return itemType == BaseFlowLayout2Type.DEFAULT_VIEW_TYPE ? defLayoutRes : flowLayout2Type.getLayoutRes(itemType);
     }
 
     /**
@@ -197,6 +211,40 @@ public abstract class BaseFlowLayout2Adapter<T, K extends BaseFlowLayout2ViewHol
             this.datas.addAll(datas);
         }
         notifyDataSetChanged();
+    }
+
+    /**
+     * 设置多类型管理器{@link BaseFlowLayout2Type}
+     *
+     * @return
+     */
+    public BaseFlowLayout2Adapter<T, K> setFlowLayout2Type(BaseFlowLayout2Type flowLayout2Type) {
+        this.flowLayout2Type = flowLayout2Type;
+        return this;
+    }
+
+    /**
+     * 获取多类型管理器{@link BaseFlowLayout2Type}
+     */
+    public BaseFlowLayout2Type getFlowLayout2Type() {
+        return flowLayout2Type;
+    }
+
+    /**
+     * 增加类型以及布局id
+     *
+     * @param viewType    类型
+     * @param layoutResId 布局id
+     */
+    public void addItemType(int viewType, @LayoutRes int layoutResId) {
+        flowLayout2Type.addItemType(viewType, layoutResId);
+    }
+
+    /**
+     * 获取Item类型
+     */
+    public int getItemType(int position) {
+        return flowLayout2Type.getItemType(datas, position);
     }
 
     /**

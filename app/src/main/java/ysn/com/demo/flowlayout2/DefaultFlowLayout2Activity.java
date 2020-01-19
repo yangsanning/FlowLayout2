@@ -11,6 +11,13 @@ import ysn.com.view.flowlayout2.FlowLayout2;
 import ysn.com.view.flowlayout2.base.BaseFlowLayout2Adapter;
 import ysn.com.view.flowlayout2.base.BaseFlowLayout2ViewHolder;
 
+/**
+ * @Author yangsanning
+ * @ClassName EmptyFlowLayout2Activity
+ * @Description 默认FlowLayout2演示
+ * @Date 2020/1/19
+ * @History 2020/1/19 author: description:
+ */
 public class DefaultFlowLayout2Activity extends BaseActivity {
 
     FlowLayout2Adapter flowLayout2Adapter;
@@ -33,6 +40,9 @@ public class DefaultFlowLayout2Activity extends BaseActivity {
                     case 1:
                         startActivity(EmptyFlowLayout2Activity.class);
                         break;
+                    case 2:
+                        startActivity(MultiTypeFlowLayout2Activity.class);
+                        break;
                     default:
                         showMsg("点击" + flowLayout2Adapter.getDatas().get(position).getName());
                         break;
@@ -54,6 +64,7 @@ public class DefaultFlowLayout2Activity extends BaseActivity {
         ArrayList<User> userList = new ArrayList<>();
         userList.add(0, new User("默认FlowLayout2演示"));
         userList.add(1, new User("FlowLayout2为空时演示"));
+        userList.add(2, new User("FlowLayout2多类型演示"));
         return userList;
     }
 
