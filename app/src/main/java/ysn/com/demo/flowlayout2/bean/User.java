@@ -1,4 +1,4 @@
-package ysn.com.demo.flowlayout2;
+package ysn.com.demo.flowlayout2.bean;
 
 /**
  * @Author yangsanning
@@ -11,6 +11,10 @@ public class User {
 
     private String name;
     private int id;
+
+    public User(String name) {
+        this.name = name;
+    }
 
     public User(String name, int id) {
         this.name = name;

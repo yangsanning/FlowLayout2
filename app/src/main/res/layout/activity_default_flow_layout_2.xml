@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ysn.com.view.flowlayout2.FlowLayout2 xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ysn="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_activity_flow_layout_2"
+    android:id="@+id/default_flow_layout_2_activity_flow_layout_2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
