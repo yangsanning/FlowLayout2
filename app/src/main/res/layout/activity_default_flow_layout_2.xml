@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ysn.com.view.flowlayout2.FlowLayout2 xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ysn="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/default_flow_layout_2_activity_flow_layout_2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    ysn:fl2_column_space="10dp"
-    ysn:fl2_row_space="10dp" />
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/default_flow_layout_2_activity_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="点击切换最后一行是否均分" />
+
+    <ysn.com.view.flowlayout2.FlowLayout2
+        android:id="@+id/default_flow_layout_2_activity_flow_layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        ysn:fl2_column_space="10dp"
+        ysn:fl2_is_last_avg="false"
+        ysn:fl2_row_space="10dp" />
+</LinearLayout>

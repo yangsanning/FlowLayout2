@@ -29,6 +29,11 @@ public class FlowLayout2 extends ViewGroup {
     private float rowSpace;
     private float columnSpace;
 
+    /**
+     * 最后一行是否均分间距
+     */
+    private boolean isLastAvg;
+
     private List<FlowLine2> flowLine2List = new ArrayList<>();
     private BaseFlowLayout2Adapter adapter;
 
@@ -56,6 +61,7 @@ public class FlowLayout2 extends ViewGroup {
 
         columnSpace = typedArray.getDimension(R.styleable.FlowLayout2_fl2_column_space, 0);
         rowSpace = typedArray.getDimension(R.styleable.FlowLayout2_fl2_row_space, 0);
+        isLastAvg = typedArray.getBoolean(R.styleable.FlowLayout2_fl2_is_last_avg, Boolean.FALSE);
 
         typedArray.recycle();
     }
@@ -92,7 +98,7 @@ public class FlowLayout2 extends ViewGroup {
             // 为空或超出行宽度的时候需要重新创建新行
             boolean success = flowLine2 != null && flowLine2.addView(view);
             if (!success) {
-                flowLine2 = new FlowLine2(maxFlowLineWidth, columnSpace);
+                flowLine2 = new FlowLine2(maxFlowLineWidth, columnSpace, isLastAvg);
                 if (i == childCount - 1) {
                     flowLine2.setLast(true);
                 }
@@ -136,6 +142,15 @@ public class FlowLayout2 extends ViewGroup {
                 top += rowSpace;
             }
         }
+    }
+
+    public boolean isLastAvg() {
+        return isLastAvg;
+    }
+
+    public void setLastAvg(boolean lastAvg) {
+        isLastAvg = lastAvg;
+        requestLayout();
     }
 
     public BaseFlowLayout2Adapter getAdapter() {

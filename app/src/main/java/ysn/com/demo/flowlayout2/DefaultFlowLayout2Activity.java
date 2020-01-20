@@ -27,7 +27,18 @@ public class DefaultFlowLayout2Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_flow_layout_2);
 
-        FlowLayout2 flowLayout2 = findViewById(R.id.default_flow_layout_2_activity_flow_layout_2);
+        final FlowLayout2 flowLayout2 = findViewById(R.id.default_flow_layout_2_activity_flow_layout_2);
+
+        findViewById(R.id.default_flow_layout_2_activity_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (flowLayout2.isLastAvg()) {
+                    flowLayout2.setLastAvg(Boolean.FALSE);
+                } else {
+                    flowLayout2.setLastAvg(Boolean.TRUE);
+                }
+            }
+        });
 
         flowLayout2Adapter = new FlowLayout2Adapter();
         flowLayout2Adapter.setOnItemClickListener(new BaseFlowLayout2Adapter.OnItemClickListener() {

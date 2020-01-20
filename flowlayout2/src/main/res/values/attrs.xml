@@ -3,5 +3,6 @@
     <declare-styleable name="FlowLayout2">
         <attr name="fl2_column_space" format="dimension"/>
         <attr name="fl2_row_space" format="dimension"/>
+        <attr name="fl2_is_last_avg" format="boolean"/>
     </declare-styleable>
 </resources>

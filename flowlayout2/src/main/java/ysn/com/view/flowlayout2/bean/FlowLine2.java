@@ -26,14 +26,18 @@ public class FlowLine2 {
     private int width;
 
     /**
-     * 是否最后一行(非第一行时, 把剩余空间进行平均使用)
+     * isLastAvg: 最后一行是否均分间距
+     * isLast: 是否最后一行(非第一行且isLastAvg为true时, 把剩余空间进行平均使用)
      */
+    private boolean isLastAvg;
     private boolean isLast;
+
     private List<View> viewList = new ArrayList<>();
 
-    public FlowLine2(int maxWidth, float columnSpace) {
+    public FlowLine2(int maxWidth, float columnSpace, boolean isLastAvg) {
         this.maxWidth = maxWidth;
         this.columnSpace = columnSpace;
+        this.isLastAvg = isLastAvg;
     }
 
     /**
@@ -85,7 +89,7 @@ public class FlowLine2 {
             int measuredWidth = view.getMeasuredWidth();
             int measuredHeight = view.getMeasuredHeight();
 
-            if (isLast) {
+            if (isLast && !isLastAvg) {
                 // 重新测量
                 view.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(measuredHeight, View.MeasureSpec.EXACTLY));
