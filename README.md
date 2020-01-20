@@ -94,7 +94,7 @@
 |:---:|:---:|:---:|
 | fl2_column_space | dimension | 列的间距 |
 | fl2_row_space | dimension | 行的间距 |
-
+| fl2_is_last_avg | boolean | 最后一行是否均分 |
 
 ### 3.添加方法
 
